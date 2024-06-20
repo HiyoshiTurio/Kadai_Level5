@@ -749,7 +749,7 @@ MonoBehaviour:
   _speed: 1
   _jumpPower: 0.8
   _minPosY: -3
-  _maxJumpCount: 1
+  _maxJumpCount: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

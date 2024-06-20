@@ -10,7 +10,7 @@ public class Player2 : MonoBehaviour
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _jumpPower = 0.6f;
     [SerializeField] private float _minPosY = -3f;
-    [SerializeField] private int _maxJumpCount = 1;
+    [SerializeField] private int _maxJumpCount = 2;
     TmpRigidbody _tmpRigidbody;
     private int _jumpCounter = 0;
 
