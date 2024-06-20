@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private float _fixedParam = 60f;
     private float _ySpeed = 0;
     private int _jumpCounter = 0;
+    bool _isGround = false;
 
     private void Update()
     {
@@ -32,15 +33,22 @@ public class Player : MonoBehaviour
 
         if (this.transform.position.y < _minPosY)
         {
-            _ySpeed = 0f;
-            this.transform.position = new Vector3(this.transform.position.x, _minPosY, 0);
+            _isGround = true;
+            this.transform.position = new Vector3(this.transform.position.x, _minPosY + 0.01f, 0);
             _jumpCounter = _maxJumpCount;
+        }
+        else
+        {
+            _isGround = false;
         }
     }
 
     private void FixedUpdate()
     {
-        TmpRigidBody();
+        if (!_isGround)
+        {
+            TmpRigidBody();
+        }
     }
 
     void ShotBullet()
