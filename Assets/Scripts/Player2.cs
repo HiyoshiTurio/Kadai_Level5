@@ -27,12 +27,6 @@ public class Player2 : MonoBehaviour
             ShotBullet();
         }
 
-        if (Input.GetButtonDown("Jump") && _jumpCounter > 0)
-        {
-            Jump();
-            _jumpCounter--;
-        }
-
         if (this.transform.position.y < _minPosY)
         {
             Vector3 tmp = this.transform.position;
@@ -40,6 +34,12 @@ public class Player2 : MonoBehaviour
             this.transform.position = tmp;
             _tmpRigidbody.OnGround();
             _jumpCounter = _maxJumpCount;
+        }
+
+        if (Input.GetButtonDown("Jump") && _jumpCounter > 0)
+        {
+            Jump();
+            _jumpCounter--;
         }
     }
 
@@ -56,6 +56,7 @@ public class Player2 : MonoBehaviour
     void Jump()
     {
         _tmpRigidbody.YSpeed = _jumpPower;
+        Debug.Log(_tmpRigidbody.YSpeed);
     }
 
     void Move()
