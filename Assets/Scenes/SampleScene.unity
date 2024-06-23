@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 2099193865}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -746,8 +746,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bullet: {fileID: 1608445150478130577, guid: 7c24958dff5f752428b158391786083b, type: 3}
   _mazzle: {fileID: 1345120161}
-  _speed: 1
-  _jumpPower: 0.8
+  _speed: 0.3
+  _jumpPower: 0.6
   _minPosY: -3
   _maxJumpCount: 2
 --- !u!1660057539 &9223372036854775807

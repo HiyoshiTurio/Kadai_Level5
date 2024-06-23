@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -13,10 +8,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float _minPosY = -3f;
     [SerializeField] private float _gravity = 2f;
     [SerializeField] private int _maxJumpCount = 1;
-    private float _fixedParam = 60f;
+    private readonly float _fixedParam = 60f;
     private float _ySpeed = 0;
     private int _jumpCounter = 0;
-    bool _isGround = false;
+    private bool _isGround = false;
 
     private void Update()
     {

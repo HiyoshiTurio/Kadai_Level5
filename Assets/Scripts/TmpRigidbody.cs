@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 [DefaultExecutionOrder(-100)]
 public class TmpRigidbody : MonoBehaviour
 {
@@ -35,7 +35,6 @@ public class TmpRigidbody : MonoBehaviour
     void TmpRigidBody()
     {
         _ySpeed -= _gravity;
-        
         
         Vector3 tmp = this.transform.position;
         tmp.x += _xSpeed;

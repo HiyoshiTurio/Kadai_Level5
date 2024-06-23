@@ -56,7 +56,6 @@ public class Player2 : MonoBehaviour
     void Jump()
     {
         _tmpRigidbody.YSpeed = _jumpPower;
-        Debug.Log(_tmpRigidbody.YSpeed);
     }
 
     void Move()
