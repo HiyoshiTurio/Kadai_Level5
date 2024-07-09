@@ -9,36 +9,65 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject _mazzle;
     [SerializeField] private float _attackSpeed = 1f;
     [SerializeField] private float _attackRange = 1f;
+    private bool _playerInAttackRange = false;
     private EnemyManager _enemyManager;
     private float _fixTimer = 0;
 
     void Start()
     {
-        _enemyManager = _enemyManager.Instance;
+        _enemyManager = EnemyManager.Instance;
     }
 
     void Update()
     {
+        // if (_enemyManager.PlayerPos.x - this.transform.position.x > 0)
+        // {
+        //     this.transform.right = transform.right;
+        // }
+        // else
+        // {
+        //     this.transform.right = -transform.right;
+        // }
+        IsPlayerInAttackRange();
     }
 
     private void FixedUpdate()
     {
-        AttackRoutine();
+        if (_playerInAttackRange)
+        {
+            AttackRoutine();
+        }
     }
 
     void AttackRoutine()
     {
         _fixTimer++;
+        Debug.Log(_fixTimer);
         if (_fixTimer >= 60 * _attackSpeed)
         {
             _fixTimer -= 60;
             ShotBullet();
         }
     }
-
     void ShotBullet()
     {
         GameObject _tmpBullet = Instantiate(_bullet, _mazzle.transform.position, Quaternion.identity);
         _tmpBullet.transform.up = _mazzle.transform.up;
+    }
+
+    void IsPlayerInAttackRange()
+    {
+        Vector3 playerPos = _enemyManager.PlayerPos;
+        float x = playerPos.x - this.transform.position.x;
+        float y = playerPos.y - this.transform.position.y;
+        if (x * x + y * y < _attackRange * _attackRange)
+        {
+            _playerInAttackRange = true;
+        }
+        else
+        {
+            _playerInAttackRange = false;
+            _fixTimer = 0;
+        }
     }
 }

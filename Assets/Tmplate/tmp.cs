@@ -8,7 +8,6 @@ public class tmp : MonoBehaviour
     Vector3 dir;
     Vector3 _targetPos;
     [SerializeField] float _speed = 1.0f;
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -16,17 +15,12 @@ public class tmp : MonoBehaviour
     void Update()
     {
         dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //if (_targetPos != dir)
-        //{
-        //    _targetPos = Vector2.Lerp(_targetPos, dir, _speed);
-        //}
-        //this.transform.up = _targetPos;
         float dot0 = Vector3.Dot(dir - this.transform.position, this.transform.right);
-        if (dot0 < 0)
+        if (dot0 < -0.01)
         {
             RightRotate();
         }
-        else if (dot0 > 0)
+        else if (dot0 > 0.01)
         {
             LeftRotate();
         }
