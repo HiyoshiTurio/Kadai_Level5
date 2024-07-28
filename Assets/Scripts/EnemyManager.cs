@@ -11,6 +11,8 @@ public class EnemyManager : MonoBehaviour
     private GameObject _player;
     private MyCollider _playerMyCollider;
     private TmpRigidbody _playerTmpRigidbody;
+    private AABBCollision _playerAABBCollision;
+    private Rect _playerRect;
     public static EnemyManager Instance
     {
         get => _instance;
@@ -40,6 +42,16 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public AABBCollision PlayerAABBCollision
+    {
+        get => _playerAABBCollision;
+    }
+
+    public Rect playerRect
+    {
+        get => _playerAABBCollision.Rect;
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -50,6 +62,7 @@ public class EnemyManager : MonoBehaviour
         _player = GameObject.FindWithTag("Player");
         _playerMyCollider = _player.GetComponent<MyCollider>();
         _playerTmpRigidbody = _player.GetComponent<TmpRigidbody>();
+        _playerAABBCollision = _player.GetComponent<AABBCollision>();
     }
     void Update()
     {

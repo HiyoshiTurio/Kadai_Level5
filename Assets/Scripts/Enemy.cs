@@ -20,29 +20,22 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        // if (_enemyManager.PlayerPos.x - this.transform.position.x > 0)
-        // {
-        //     this.transform.right = transform.right;
-        // }
-        // else
-        // {
-        //     this.transform.right = -transform.right;
-        // }
+        
         IsPlayerInAttackRange();
     }
 
     private void FixedUpdate()
     {
-        if (_playerInAttackRange)
-        {
-            AttackRoutine();
-        }
+        // if (_playerInAttackRange)
+        // {
+        //     AttackRoutine();
+        // }
+        AttackRoutine();
     }
 
     void AttackRoutine()
     {
         _fixTimer++;
-        Debug.Log(_fixTimer);
         if (_fixTimer >= 60 * _attackSpeed)
         {
             _fixTimer -= 60;

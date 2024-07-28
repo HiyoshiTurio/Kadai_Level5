@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerState : MonoBehaviour
+public class PlayerState : MonoBehaviour, IPlayerState
 {
     private static PlayerState _instance;
     [SerializeField] private int _life = 5;
@@ -56,5 +56,10 @@ public class PlayerState : MonoBehaviour
     void UpdateText()
     {
         _text.text = Life.ToString();
+    }
+    
+    public void HitPlayer(int damage)
+    {
+        Life -= damage;
     }
 }

@@ -20,6 +20,7 @@ public class MyCollider : MonoBehaviour
             new Vector3(_pivot.x + _range.x/2, _pivot.y + _range.y/2, _pivot.z),
             new Vector3(_pivot.x + _range.x/2, _pivot.y - _range.y/2, _pivot.z),
             new Vector3(_pivot.x - _range.x/2, _pivot.y - _range.y/2, _pivot.z)
+            
         };
         for (int i = 0; i < _vector3s.Length; i++)
         {

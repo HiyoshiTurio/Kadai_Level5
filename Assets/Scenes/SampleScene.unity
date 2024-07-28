@@ -1003,7 +1003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1807116919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1190,10 +1190,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2099193861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5fff16ebc8bfbf48ba733a102944321, type: 3}
+  m_Script: {fileID: 11500000, guid: f895536fbcb5b4946afc996d02e31131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _range: {x: 1, y: 1, z: 1}
+  offset: {x: -0.5, y: -0.5, z: 0}
+  size_cx: 1
+  size_cy: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
