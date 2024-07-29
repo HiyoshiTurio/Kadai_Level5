@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour, IPlayerState
+public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed = 7f;
     [SerializeField] private float _lifeTime = 3f;
@@ -37,7 +37,6 @@ public class Bullet : MonoBehaviour, IPlayerState
 
     void Hit()
     {
-        HitPlayer(_damage);
         Destroy(this.gameObject);
     }
 
@@ -94,10 +93,5 @@ public class Bullet : MonoBehaviour, IPlayerState
         }
 
         return false;
-    }
-
-    public void HitPlayer(int damage)
-    {
-        
     }
 }
