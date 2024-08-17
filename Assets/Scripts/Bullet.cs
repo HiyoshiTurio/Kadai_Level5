@@ -33,10 +33,8 @@ public class Bullet : MonoBehaviour, IPlayerState
 
     void Hit()
     {
-        HitPlayer(_damage);
         Destroy(this.gameObject);
     }
-
     public void HitPlayer(int damage)
     {
     }

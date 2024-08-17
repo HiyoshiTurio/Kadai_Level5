@@ -1,0 +1,10 @@
+diff a/Assets/Scripts/Bullet.cs b/Assets/Scripts/Bullet.cs	(rejected hunks)
+@@ -3,7 +3,7 @@
+ using System.Collections.Generic;
+ using UnityEngine;
+ 
+-public class Bullet : MonoBehaviour, IPlayerState
++public class Bullet : MonoBehaviour
+ {
+     [SerializeField] private float _speed = 7f;
+     [SerializeField] private float _lifeTime = 3f;
