@@ -12,12 +12,8 @@ public class Bullet : MonoBehaviour, IPlayerState
 
     private void Start()
     {
-        Invoke("Destroy", _lifeTime);
-    }
-
-    private void Update()
-    {
-        //Hit();
+        Invoke("MyDestroy", _lifeTime);
+        GetComponent<AABBCollision>().OnAABBEnterEvent += Hit;
     }
 
     private void FixedUpdate()
@@ -25,15 +21,20 @@ public class Bullet : MonoBehaviour, IPlayerState
         this.transform.position += _speed * _fixedSpeed * transform.up;
     }
 
-    private void Destroy()
+    private void MyDestroy()
     {
         ColliderManager.Instance.RemoveAABBCollision(this.gameObject.GetComponent<AABBCollision>());
         Destroy(this.gameObject);
     }
 
-    void Hit()
+    void Hit(AABBCollision other)
     {
-        Destroy(this.gameObject);
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log($"{other.gameObject.name}");
+            HitPlayer(_damage);
+            MyDestroy();
+        }
     }
     public void HitPlayer(int damage)
     {

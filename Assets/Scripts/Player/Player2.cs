@@ -17,6 +17,7 @@ public class Player2 : MonoBehaviour
     private void Start()
     {
         _tmpRigidbody = GetComponent<TmpRigidbody>();
+        //GetComponent<AABBCollision>().OnAABBEnterEvent += Hit;
     }
 
     private void Update()
@@ -43,9 +44,10 @@ public class Player2 : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-    }
+    // void Hit(AABBCollision other)
+    // {
+    //     
+    // }
 
     void ShotBullet()
     {
