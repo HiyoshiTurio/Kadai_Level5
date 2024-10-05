@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 [DefaultExecutionOrder(-1)]
 public class ColliderManager : MonoBehaviour
 {
@@ -22,14 +24,18 @@ public class ColliderManager : MonoBehaviour
     {
         if (AABBCollisions.Count > 1)
         {
-            for (int i = 0; i < AABBCollisions.Count; i++)
+            for (int i = 0; i < AABBCollisions.Count - 1; i++)
             {
                 AABBCollision collision1 = AABBCollisions[i];
-                AABBCollision collision2 = i == AABBCollisions.Count - 1 ? AABBCollisions[0] : AABBCollisions[i + 1];
-                Debug.Log(collision1.gameObject.name + " and " + collision2.gameObject.name + " collided");
-                if (CheckAABB(collision1, collision2))
+                for (int j = i + 1; j < AABBCollisions.Count; j++)
                 {
-                    Debug.Log("hit");
+                    AABBCollision collision2 =
+                        j == AABBCollisions.Count - 1 ? AABBCollisions[0] : AABBCollisions[j + 1];
+                    if (CheckAABB(collision1, collision2))
+                    {
+                        collision1.Hit();
+                        collision2.Hit();
+                    }
                 }
             }
         }
@@ -39,12 +45,14 @@ public class ColliderManager : MonoBehaviour
     {
         AABBCollisions.Add(collision);
     }
+
     public void RemoveAABBCollision(AABBCollision collision)
     {
         AABBCollisions.Remove(collision);
     }
+
     //参考URL:https://taiyakisun.hatenablog.com/entry/20120205/1328410006
-     bool CheckAABB(AABBCollision collision1, AABBCollision collision2) 
+    bool CheckAABB(AABBCollision collision1, AABBCollision collision2)
     {
         Rect aabb1 = collision1.Rect;
         Vector3 v1 = collision1.Pivot;
@@ -74,6 +82,7 @@ public class ColliderManager : MonoBehaviour
                 }
             }
         }
+
         if (rv.y != 0)
         {
             float fLineY = (rv.y > 0) ? exAABB1.Bottom : exAABB1.Top;

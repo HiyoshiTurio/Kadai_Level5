@@ -24,6 +24,7 @@ public class AABBCollision : MonoBehaviour
     public float Left { get => Pivot.x + offset.x; }
     public float Top { get => Pivot.y + size_cy + offset.y; }
     public float Bottom { get => Pivot.y + offset.y; }
+    private Action HitAction;
 
     private void Awake()
     {
@@ -43,6 +44,11 @@ public class AABBCollision : MonoBehaviour
             Top,
             Bottom
         );
+    }
+
+    public void Hit()
+    {
+        HitAction?.Invoke();
     }
     private void OnDrawGizmos()
     {
