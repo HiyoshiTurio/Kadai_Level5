@@ -7,18 +7,14 @@ public class AABBCollision : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] private float size_cx;
     [SerializeField] private float size_cy;
-    AABBCollision _collider;
-    private Vector3 _pivot;
+    AABBCollision _aaBCollision;
+    private TmpRigidbody _tmpRigidbody;
     private Rect _rect;
-    public Vector3 Pivot
-    {
-        get => _pivot;
-        private set => _pivot = value;
-    }
-    public Rect Rect
-    {
-        get => _rect;
-    }
+    public Vector3 Pivot { get => this.transform.position; }
+    public Rect Rect { get => _rect; }
+    public float Vx { get => _tmpRigidbody.XSpeed; }
+    public float Vy { get => _tmpRigidbody.YSpeed; }
+    public Vector3 V { get => _tmpRigidbody.V; }
 
     public float Right { get => Pivot.x + size_cx + offset.x; }
     public float Left { get => Pivot.x + offset.x; }
@@ -26,18 +22,14 @@ public class AABBCollision : MonoBehaviour
     public float Bottom { get => Pivot.y + offset.y; }
     public Action<AABBCollision> OnAABBEnterEvent;
 
-    private void Awake()
+    private void Start()
     {
-        _collider = this;
-    }
-
-    void Start()
-    {
-        ColliderManager.Instance.AddAABBCollision(_collider);
+        _aaBCollision = this;
+        _tmpRigidbody = GetComponent<TmpRigidbody>();
+        ColliderManager.Instance.AddAABBCollision(_aaBCollision);
     }
     private void Update() 
     {
-        _pivot = transform.position;
         _rect = new Rect(
             Right,
             Left,
@@ -46,13 +38,17 @@ public class AABBCollision : MonoBehaviour
         );
     }
 
+    private void OnDestroy()
+    {
+        ColliderManager.Instance.RemoveAABBCollision(this);
+    }
+
     public void Hit()
     {
         OnAABBEnterEvent?.Invoke(this);
     }
     private void OnDrawGizmos()
     {
-        _pivot = transform.position;
         _rect = new Rect(
             Right,
             Left,

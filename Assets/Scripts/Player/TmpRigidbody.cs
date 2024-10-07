@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[DefaultExecutionOrder(-100)]
 public class TmpRigidbody : MonoBehaviour
 {
     [SerializeField] private float _gravity = 0.05f;
@@ -24,6 +23,7 @@ public class TmpRigidbody : MonoBehaviour
     public Vector3 V
     {
         get => _v;
+        set => _v = value;
     }
 
     private void FixedUpdate()
@@ -34,19 +34,8 @@ public class TmpRigidbody : MonoBehaviour
     void TmpRigidBody()
     {
         _ySpeed -= _gravity;
-        
-        // Vector3 tmp = this.transform.position;
-        // tmp.x += _xSpeed;
-        // tmp.y += _ySpeed;
-        // this.transform.position = tmp;
-        _v = Vector3.zero;
-        _v.x += _xSpeed;
-        _v.y += _ySpeed;
-        this.transform.position += _v;
-    }
-
-    public void OnGround()
-    {
-        _ySpeed = 0;
+        _v.x = _xSpeed;
+        _v.y = _ySpeed;
+        transform.position += _v;
     }
 }

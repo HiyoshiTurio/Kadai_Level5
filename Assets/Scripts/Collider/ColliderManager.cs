@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[DefaultExecutionOrder(-1)]
 public class ColliderManager : MonoBehaviour
 {
     static ColliderManager _instance;
-
     List<AABBCollision> AABBCollisions = new List<AABBCollision>();
 
     public static ColliderManager Instance
@@ -24,15 +22,16 @@ public class ColliderManager : MonoBehaviour
     {
         if (AABBCollisions.Count > 1)
         {
-            for (int i = 0; i < AABBCollisions.Count - 1; i++)
+            for (int i = 0; i < AABBCollisions.Count; i++)
             {
                 AABBCollision collision1 = AABBCollisions[i];
                 for (int j = i + 1; j < AABBCollisions.Count; j++)
                 {
                     AABBCollision collision2 =
-                        j == AABBCollisions.Count - 1 ? AABBCollisions[0] : AABBCollisions[j + 1];
+                        i == AABBCollisions.Count - 1 ? AABBCollisions[0] : AABBCollisions[j];
                     if (CheckAABB(collision1, collision2))
                     {
+                        Debug.Log(collision1.gameObject.name + " and " + collision2.gameObject.name + " collided");
                         collision1.Hit();
                         collision2.Hit();
                     }
@@ -52,16 +51,18 @@ public class ColliderManager : MonoBehaviour
     }
 
     //参考URL:https://taiyakisun.hatenablog.com/entry/20120205/1328410006
-    bool CheckAABB(AABBCollision collision1, AABBCollision collision2)
+    private bool CheckAABB(AABBCollision collision1, AABBCollision collision2)
     {
+        Debug.Log("CheckAABB");
         Rect aabb1 = collision1.Rect;
-        Vector3 v1 = collision1.Pivot;
+        Vector3 v1 = collision1.V;
         Rect aabb2 = collision2.Rect;
-        Vector3 v2 = collision2.Pivot;
+        Vector3 v2 = collision2.V;
+        
         Vector3 rv = v1 - v2;
-        Vector3 p0 = new Vector3(aabb1.Left, aabb1.Bottom);
+        Vector3 point = new Vector3(aabb1.Left, aabb1.Bottom);
 
-        Rect exAABB1 = new Rect
+        Rect exAABB = new Rect
         (
             aabb2.Right,
             aabb2.Left - (aabb1.Right - aabb1.Left),
@@ -70,14 +71,17 @@ public class ColliderManager : MonoBehaviour
         );
         if (rv.x != 0)
         {
-            float fLineX = (rv.x > 0) ? exAABB1.Left : exAABB1.Right;
-            float t = fLineX - (p0.x + rv.x) / rv.x;
+            Debug.Log("a");
+            float fLineX = (rv.x > 0) ? exAABB.Left : exAABB.Right;
+            float t = (fLineX - (point.x + rv.x)) / rv.x;
 
             if (t >= 0 && t <= 1.0f)
             {
-                float hitY = p0.y + t * rv.y;
-                if (hitY >= exAABB1.Bottom && hitY <= exAABB1.Top)
+                Debug.Log("b");
+                float hitY = point.y + t * rv.y;
+                if (hitY >= exAABB.Bottom && hitY <= exAABB.Top)
                 {
+                    Debug.Log("c");
                     return true;
                 }
             }
@@ -85,14 +89,17 @@ public class ColliderManager : MonoBehaviour
 
         if (rv.y != 0)
         {
-            float fLineY = (rv.y > 0) ? exAABB1.Bottom : exAABB1.Top;
-            float t = fLineY - (p0.y + rv.y) / rv.y;
+            Debug.Log("d");
+            float fLineY = (rv.y > 0) ? exAABB.Bottom : exAABB.Top;
+            float t = (fLineY - (point.y + rv.y)) / rv.y;
 
             if ((t >= 0) && (t <= 1.0f))
             {
-                float hitX = p0.x + t * rv.x;
-                if ((hitX >= exAABB1.Left) && (hitX <= exAABB1.Right))
+                Debug.Log("e");
+                float hitX = point.x + t * rv.x;
+                if ((hitX >= exAABB.Left) && (hitX <= exAABB.Right))
                 {
+                    Debug.Log("f");
                     return true;
                 }
             }

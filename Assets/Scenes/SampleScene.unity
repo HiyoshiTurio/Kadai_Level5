@@ -441,8 +441,6 @@ GameObject:
   m_Component:
   - component: {fileID: 608033941}
   - component: {fileID: 608033940}
-  - component: {fileID: 608033942}
-  - component: {fileID: 608033943}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -517,35 +515,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &608033942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 608033939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30c835097245e6e498569f76f252d6cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: -50, y: -2.5, z: 0}
-  sizeCx: 100
-  sizeCy: 5
-  isTrigger: 1
---- !u!114 &608033943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 608033939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6573e9f0348325741b18161cf99e907c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravity: 0
 --- !u!1 &848067457
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1100091601}
-  - component: {fileID: 1100091600}
+  - component: {fileID: 1100091602}
   m_Layer: 0
   m_Name: ColliderManager
   m_TagString: Untagged
@@ -686,18 +655,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1100091600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1100091599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f11532744efa5b408cefdabd5007c0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1100091601
 Transform:
   m_ObjectHideFlags: 0
@@ -707,12 +664,24 @@ Transform:
   m_GameObject: {fileID: 1100091599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7969714, y: -1.3164239, z: -0.07611147}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1100091602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100091599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282ae05a7161ca746b7b1e7674fe450a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1251961044
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,9 +776,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1260001590}
   - component: {fileID: 1260001589}
-  - component: {fileID: 1260001588}
-  - component: {fileID: 1260001591}
   - component: {fileID: 1260001592}
+  - component: {fileID: 1260001591}
+  - component: {fileID: 1260001593}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -817,22 +786,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1260001588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260001587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed1ea460cf740564fa79364911eddaec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bullet: {fileID: 1608445150478130577, guid: 494ac6769dffabc47a8eab6385267133, type: 3}
-  _mazzle: {fileID: 1251961044}
-  _attackSpeed: 1
-  _attackRange: 15
 --- !u!212 &1260001589
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -910,13 +863,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1260001587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30c835097245e6e498569f76f252d6cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 8896092248c71734281c9e5c0dc11793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: -0.5, y: -0.5, z: 0}
-  sizeCx: 1
-  sizeCy: 1
-  isTrigger: 0
+  size_cx: 1
+  size_cy: 1
 --- !u!114 &1260001592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,10 +878,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1260001587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6573e9f0348325741b18161cf99e907c, type: 3}
+  m_Script: {fileID: 11500000, guid: ed1ea460cf740564fa79364911eddaec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 0
+  bullet: {fileID: 1608445150478130577, guid: 7c24958dff5f752428b158391786083b, type: 3}
+  mazzle: {fileID: 1251961044}
+  attackSpeed: 1
+  attackRange: 1
+--- !u!114 &1260001593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260001587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d0023ad6cb6da649b1e1d3e726bd1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gravity: 0
 --- !u!1 &1345120161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,10 +1174,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2099193861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6573e9f0348325741b18161cf99e907c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d0023ad6cb6da649b1e1d3e726bd1d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 0.05
+  _gravity: 0.05
 --- !u!114 &2099193869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1219,13 +1187,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2099193861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30c835097245e6e498569f76f252d6cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 7954e56a4ab9e86438a9715a9a8f9848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: -0.5, y: -0.5, z: 0}
-  sizeCx: 1
-  sizeCy: 1
-  isTrigger: 0
+  bullet: {fileID: 1608445150478130577, guid: 7c24958dff5f752428b158391786083b, type: 3}
+  mazzle: {fileID: 1345120161}
+  speed: 0.5
+  jumpPower: 0.6
+  minPosY: -3
+  maxJumpCount: 2
 --- !u!114 &2099193870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1235,18 +1205,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2099193861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c1131eee9e8ca5468c7e797a04efaf7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8896092248c71734281c9e5c0dc11793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
+  offset: {x: -0.5, y: -0.5, z: 0}
+  size_cx: 1
+  size_cy: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 49901606}
-  - {fileID: 1100091601}
   - {fileID: 361233569}
+  - {fileID: 1100091601}
   - {fileID: 608033941}
   - {fileID: 2099193864}
   - {fileID: 1260001590}
