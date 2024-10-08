@@ -43,9 +43,9 @@ public class AABBCollision : MonoBehaviour
         ColliderManager.Instance.RemoveAABBCollision(this);
     }
 
-    public void Hit()
+    public void Hit(AABBCollision collision)
     {
-        OnAABBEnterEvent?.Invoke(this);
+        OnAABBEnterEvent?.Invoke(collision);
     }
     private void OnDrawGizmos()
     {

@@ -9,10 +9,22 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject mazzle;
     [SerializeField] private float attackSpeed = 1f;
     [SerializeField] private float attackRange = 1f;
-    private int _hp = 5;
-    private bool _playerInAttackRange = false;
+    private int _hp = 3;
     private EnemyManager _enemyManager;
     private float _fixTimer = 0;
+
+    public int Hp
+    {
+        get => _hp;
+        set
+        {
+            _hp = value;
+            if (_hp <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
 
     void Start()
     {
@@ -21,7 +33,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_playerInAttackRange)
+        if (IsPlayerInAttackRange())
         {
             AttackRoutine();
         }
