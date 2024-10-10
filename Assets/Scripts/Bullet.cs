@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour, IPlayerState
+public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed = 7f;
     [SerializeField] private float _lifeTime = 3f;
@@ -25,15 +25,15 @@ public class Bullet : MonoBehaviour, IPlayerState
         _rigidbody.YSpeed = direction.y;
     }
 
-    void Hit(AABBCollision other)
+    public void Hit(AABBCollision other)
     {
         if (other.gameObject.tag == "Player")
         {
-            HitPlayer(_damage);
+            HitPlayer(other);
         }
         else if (other.gameObject.tag == "Enemy")
         {
-            HitEnemy(_damage);
+            HitEnemy(other);
         }
         DestryBullet();
     }
@@ -42,12 +42,13 @@ public class Bullet : MonoBehaviour, IPlayerState
     {
         Destroy(gameObject);
     }
-    public void HitPlayer(int damage)
+    public void HitPlayer(AABBCollision collision)
     {
+        collision.gameObject.GetComponent<PlayerState>().Life -= _damage;
     }
 
-    private void HitEnemy(int damage)
+    private void HitEnemy(AABBCollision collision)
     {
-        
+        collision.gameObject.GetComponent<Enemy>().Hp -= _damage;
     }
 }

@@ -4,21 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerState : MonoBehaviour, IPlayerState
+public class PlayerState : MonoBehaviour
 {
     private static PlayerState _instance;
     [SerializeField] private int _life = 5;
     [SerializeField] private int _atk = 1;
     [SerializeField] private Text _text;
-
-    public static PlayerState Instance
-    {
-        get { return _instance; }
-        private set
-        {
-            _instance = value;
-        }
-    }
     
     public int Life
     {
@@ -26,6 +17,7 @@ public class PlayerState : MonoBehaviour, IPlayerState
         set
         {
             _life = value;
+            Debug.Log($"HP{_life}");
             UpdateText();
         }
     }
@@ -39,27 +31,13 @@ public class PlayerState : MonoBehaviour, IPlayerState
         }
     }
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     void Start()
     {
         UpdateText();
-    }
-    void Update()
-    {
-        
     }
 
     void UpdateText()
     {
         _text.text = Life.ToString();
-    }
-    
-    public void HitPlayer(int damage)
-    {
-        Life -= damage;
     }
 }
