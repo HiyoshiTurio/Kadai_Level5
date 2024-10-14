@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -9,6 +6,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject mazzle;
     [SerializeField] private float attackSpeed = 1f;
     [SerializeField] private float attackRange = 1f;
+    private GameObject _enemy;
     private int _hp = 3;
     private EnemyManager _enemyManager;
     private float _fixTimer = 0;
@@ -19,9 +17,10 @@ public class Enemy : MonoBehaviour
         set
         {
             _hp = value;
+            Debug.Log(_hp);
             if (_hp <= 0)
             {
-                Destroy(this.gameObject);
+                Destroy(_enemy);
             }
         }
     }
@@ -29,6 +28,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _enemyManager = EnemyManager.Instance;
+        _enemy = this.gameObject;
     }
 
     private void FixedUpdate()
