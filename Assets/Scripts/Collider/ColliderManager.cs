@@ -95,4 +95,57 @@ public class ColliderManager : MonoBehaviour
 
         return false;
     }
+
+    public void CheckRaser(Vector3 pivot, Vector3 direction, Raser raser)
+    {
+        for (int i = 0; i < AABBCollisions.Count; i++)
+        {
+            if (HitCheckRaser(pivot, direction, AABBCollisions[i]))
+            {
+                raser.Hit(AABBCollisions[i]);
+            }
+        }
+    }
+    bool HitCheckRaser(Vector2 pivot, Vector2 direction, AABBCollision collision)
+    {
+        Vector2 p1;
+        Vector2 p2;
+        if (direction.x > 0)
+        {
+            if (direction.y > 0)
+            {
+                p1 = new Vector2(collision.Rect.Left, collision.Rect.Top);
+                p2 = new Vector2(collision.Rect.Right, collision.Rect.Bottom);
+            }
+            else
+            {
+                p1 = new Vector2(collision.Rect.Left, collision.Rect.Bottom);
+                p2 = new Vector2(collision.Rect.Right, collision.Rect.Top);
+            }
+        }
+        else
+        {
+            if (direction.y > 0)
+            {
+                p1 = new Vector2(collision.Rect.Right, collision.Rect.Top);
+                p2 = new Vector2(collision.Rect.Left, collision.Rect.Bottom);
+            }
+            else
+            {
+                p1 = new Vector2(collision.Rect.Right, collision.Rect.Bottom);
+                p2 = new Vector2(collision.Rect.Left, collision.Rect.Top);
+            }
+        }
+
+        Vector2 tmp = new Vector2(-direction.y, direction.x);
+        float dot1 = Vector2.Dot((p1 - pivot), tmp);
+        float dot2 = Vector2.Dot((p2 - pivot), tmp);
+        Debug.Log(collision.gameObject.name);
+        Debug.Log("dot1:" + dot1 + " dot2:" + dot2);
+        if (dot2 < 0 && dot1 > 0)
+        {
+            return true;
+        }
+        return false;
+    }
 }

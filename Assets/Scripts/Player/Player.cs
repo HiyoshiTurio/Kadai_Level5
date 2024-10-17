@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private GameObject raser;
     [SerializeField] private GameObject bullet;
-    [SerializeField] private GameObject mazzle;
+    [SerializeField] private GameObject muzzle;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpPower = 0.6f;
     [SerializeField] private float minPosY = -3f;
@@ -26,7 +28,8 @@ public class Player : MonoBehaviour
         IsGround();
         if (Input.GetButtonDown("Fire1"))
         {
-            ShotBullet();
+            //ShotBullet();
+            ShotRaser();
         }
         if (Input.GetButtonDown("Jump") && _jumpCounter > 0)
         {
@@ -40,10 +43,16 @@ public class Player : MonoBehaviour
         
     }
 
+    void ShotRaser()
+    {
+        GameObject tmpRaser = Instantiate(raser);
+        tmpRaser.GetComponent<Raser>().ShotRaser(muzzle.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    }
+
     void ShotBullet()
     {
-        GameObject tmpBullet = Instantiate(bullet, mazzle.transform.position, Quaternion.identity);
-        tmpBullet.transform.up = mazzle.transform.up;
+        GameObject tmpBullet = Instantiate(bullet, muzzle.transform.position, Quaternion.identity);
+        tmpBullet.transform.up = muzzle.transform.up;
     }
 
     void Jump()

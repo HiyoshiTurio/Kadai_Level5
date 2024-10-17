@@ -508,7 +508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608033939}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -5.5, z: 0}
   m_LocalScale: {x: 100, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
@@ -648,11 +648,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6279505892601519313, guid: 17b40988cf28e1843b281f402967b662, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.57
+      value: 7.44
       objectReference: {fileID: 0}
     - target: {fileID: 6279505892601519313, guid: 17b40988cf28e1843b281f402967b662, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.03
+      value: 2.68
       objectReference: {fileID: 0}
     - target: {fileID: 6279505892601519313, guid: 17b40988cf28e1843b281f402967b662, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1077,8 +1077,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7954e56a4ab9e86438a9715a9a8f9848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raser: {fileID: 3072625675493628092, guid: 983ca2cbdbdac2241aae7d49a9acac2e, type: 3}
   bullet: {fileID: 1608445150478130577, guid: 7c24958dff5f752428b158391786083b, type: 3}
-  mazzle: {fileID: 1345120161}
+  muzzle: {fileID: 1345120161}
   speed: 0.5
   jumpPower: 0.6
   minPosY: -3
@@ -1108,11 +1109,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6279505892601519313, guid: 17b40988cf28e1843b281f402967b662, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.75
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 6279505892601519313, guid: 17b40988cf28e1843b281f402967b662, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.83
+      value: -0.47
       objectReference: {fileID: 0}
     - target: {fileID: 6279505892601519313, guid: 17b40988cf28e1843b281f402967b662, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1163,8 +1164,8 @@ SceneRoots:
   - {fileID: 49901606}
   - {fileID: 361233569}
   - {fileID: 1100091601}
-  - {fileID: 608033941}
   - {fileID: 2099193864}
   - {fileID: 478196080}
+  - {fileID: 608033941}
   - {fileID: 5576643128542245935}
   - {fileID: 991909193}
