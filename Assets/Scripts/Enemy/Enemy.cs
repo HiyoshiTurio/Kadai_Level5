@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
         set
         {
             _hp = value;
-            Debug.Log(_hp);
             if (_hp <= 0)
             {
                 Destroy(_enemy);

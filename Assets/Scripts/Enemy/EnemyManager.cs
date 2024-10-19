@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     private static EnemyManager _instance;
     private Vector3 _playerPos;
     private GameObject _player;
-    private Rect _playerRect;
+    private Camera _cam;
     public static EnemyManager Instance
     {
         get => _instance;
@@ -18,8 +18,12 @@ public class EnemyManager : MonoBehaviour
 
     public Vector3 PlayerPos
     {
-        get => _playerPos;
-        private set => _playerPos = value;
+        get => _player.transform.position;
+    }
+
+    public Camera Cam
+    {
+        get => _cam;
     }
 
     private void Awake() { Instance = this; }
@@ -27,9 +31,6 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindWithTag("Player");
-    }
-    void Update()
-    {
-        PlayerPos = _player.transform.position;
+        _cam = Camera.main;
     }
 }

@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class PlayerState : MonoBehaviour
 {
-    private static PlayerState _instance;
-    [SerializeField] private int _life = 5;
-    [SerializeField] private int _atk = 1;
-    [SerializeField] private Text _text;
+    [SerializeField] private int maxLife = 5;
+    [SerializeField] private int atk = 1;
+    [SerializeField] private Text text;
+    private int _life = 0;
     
     public int Life
     {
@@ -24,20 +24,21 @@ public class PlayerState : MonoBehaviour
 
     public int Atk
     {
-        get => _atk;
+        get => atk;
         set
         {
-            _atk = value;
+            atk = value;
         }
     }
 
     void Start()
     {
         UpdateText();
+        _life = maxLife;
     }
 
     void UpdateText()
     {
-        _text.text = Life.ToString();
+        text.text = Life.ToString();
     }
 }

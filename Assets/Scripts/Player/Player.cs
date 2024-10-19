@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpPower = 0.6f;
     [SerializeField] private float minPosY = -3f;
     [SerializeField] private int maxJumpCount = 2;
+    private float _inputTimer = 0.0f;
+    private bool _isButtonDown = false;
     TmpRigidbody _tmpRigidbody;
     private int _jumpCounter = 0;
 
@@ -28,13 +30,34 @@ public class Player : MonoBehaviour
         IsGround();
         if (Input.GetButtonDown("Fire1"))
         {
-            //ShotBullet();
-            ShotRaser();
+            _isButtonDown = true;
+            _inputTimer = 0;
+        }
+
+        if (Input.GetButtonUp("Fire1"))
+        {
+            if (_inputTimer >= 6.0f)
+            {
+                ShotRaser();
+            }
+            else
+            {
+                ShotBullet();
+            }
+            _isButtonDown = false;
         }
         if (Input.GetButtonDown("Jump") && _jumpCounter > 0)
         {
             Jump();
             _jumpCounter--;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (_isButtonDown)
+        {
+            _inputTimer += 0.1f;
         }
     }
 
