@@ -31,14 +31,14 @@ public class Enemy_Totugeki : MonoBehaviour
             }
         }
 
-        Camera cam = _enemyManager.Cam;
+        Camera cam = Camera.main;
         float x = this.transform.position.x;
         float y = this.transform.position.y;
 
-        if (cam.ScreenToWorldPoint(new Vector2(0, 0)).x < x &&
-            cam.ScreenToWorldPoint(new Vector2(0, 0)).y < y &&
-            cam.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x > x &&
-            cam.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).y > y
+        if (!(cam.ViewportToWorldPoint(Vector2.zero).x < x &&
+             cam.ViewportToWorldPoint(Vector2.zero).y < y &&
+             cam.ViewportToWorldPoint(Vector2.one).x > x &&
+             cam.ViewportToWorldPoint(Vector2.one).y > y)
            )
         {
             Destroy(this.gameObject);

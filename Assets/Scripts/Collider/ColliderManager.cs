@@ -140,8 +140,6 @@ public class ColliderManager : MonoBehaviour
         Vector2 tmp = new Vector2(-direction.y, direction.x);
         float dot1 = Vector2.Dot((p1 - pivot), tmp);
         float dot2 = Vector2.Dot((p2 - pivot), tmp);
-        Debug.Log(collision.gameObject.name);
-        Debug.Log("dot1:" + dot1 + " dot2:" + dot2);
         if (dot2 < 0 && dot1 > 0)
         {
             return true;

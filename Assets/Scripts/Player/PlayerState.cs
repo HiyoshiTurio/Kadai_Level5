@@ -34,7 +34,7 @@ public class PlayerState : MonoBehaviour
     void Start()
     {
         UpdateText();
-        _life = maxLife;
+        Life = maxLife;
     }
 
     void UpdateText()
