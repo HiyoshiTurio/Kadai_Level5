@@ -25,7 +25,7 @@ public class ColliderManager : MonoBehaviour
                 {
                     AABBCollision collision2 =
                         i == AABBCollisions.Count - 1 ? AABBCollisions[0] : AABBCollisions[j];
-                    if (CheckAABB(collision1, collision2))
+                    if (CheckAABBEnter(collision1, collision2))
                     {
                         collision1.Hit(collision2);
                         collision2.Hit(collision1);
@@ -46,7 +46,7 @@ public class ColliderManager : MonoBehaviour
     }
 
     //参考URL:https://taiyakisun.hatenablog.com/entry/20120205/1328410006
-    private bool CheckAABB(AABBCollision collision1, AABBCollision collision2)
+    private bool CheckAABBEnter(AABBCollision collision1, AABBCollision collision2)
     {
         Rect aabb1 = collision1.Rect;
         Vector3 v1 = collision1.V;
@@ -96,17 +96,46 @@ public class ColliderManager : MonoBehaviour
         return false;
     }
 
+    private bool AABBExit(AABBCollision collision1, AABBCollision collision2)
+    {
+        Rect aabb1 = collision1.Rect;
+        Vector3 v1 = collision1.V;
+        Rect aabb2 = collision2.Rect;
+        Vector3 v2 = collision2.V;
+
+        Vector3 rv = v2 - v1;
+
+        if (v2.x != 0)
+        {
+            float collision1X;
+            float collision2X;
+            if (rv.x > 0)
+            {
+                collision1X = collision1.Left;
+                collision2X = collision2.Right;
+            }
+            else
+            {
+                collision1X = collision1.Right;
+                collision2X = collision2.Left;
+            }
+            
+        }
+
+        return false;
+    }
+
     public void CheckRaser(Vector3 pivot, Vector3 direction, Raser raser)
     {
         for (int i = 0; i < AABBCollisions.Count; i++)
         {
-            if (HitCheckRaser(pivot, direction, AABBCollisions[i]))
+            if (CheckRaserIsHit(pivot, direction, AABBCollisions[i]))
             {
                 raser.Hit(AABBCollisions[i]);
             }
         }
     }
-    bool HitCheckRaser(Vector2 pivot, Vector2 direction, AABBCollision collision)
+    bool CheckRaserIsHit(Vector2 pivot, Vector2 direction, AABBCollision collision)
     {
         Vector2 p1;
         Vector2 p2;
