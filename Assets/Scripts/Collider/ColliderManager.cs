@@ -148,16 +148,16 @@ public class ColliderManager : MonoBehaviour
             }
             else
             {
-                p1 = new Vector2(collision.Rect.Left, collision.Rect.Bottom);
-                p2 = new Vector2(collision.Rect.Right, collision.Rect.Top);
+                p1 = new Vector2(collision.Rect.Right, collision.Rect.Top);
+                p2 = new Vector2(collision.Rect.Left, collision.Rect.Bottom);
             }
         }
         else
         {
             if (direction.y > 0)
             {
-                p1 = new Vector2(collision.Rect.Right, collision.Rect.Top);
-                p2 = new Vector2(collision.Rect.Left, collision.Rect.Bottom);
+                p1 = new Vector2(collision.Rect.Left, collision.Rect.Bottom);
+                p2 = new Vector2(collision.Rect.Right, collision.Rect.Top);
             }
             else
             {
