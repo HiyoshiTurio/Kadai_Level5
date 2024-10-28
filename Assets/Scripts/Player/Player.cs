@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpPower = 0.6f;
     [SerializeField] private float minPosY = -3f;
     [SerializeField] private int maxJumpCount = 2;
+    KnockBack _knockBack;
     private float _inputTimer = 0.0f;
     private bool _isButtonDown = false;
     TmpRigidbody _tmpRigidbody;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _tmpRigidbody = GetComponent<TmpRigidbody>();
+        _knockBack = GetComponent<KnockBack>();
         GetComponent<AABBCollision>().OnAABBEnterEvent += Hit;
     }
 
@@ -63,7 +65,11 @@ public class Player : MonoBehaviour
 
     void Hit(AABBCollision other)
     {
-        
+        _knockBack.KnockbackStart(GetComponent<AABBCollision>(),other,_tmpRigidbody);
+    }
+
+    public void KnockBack()
+    {
     }
 
     void ShotRaser()

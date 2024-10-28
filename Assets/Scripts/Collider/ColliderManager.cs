@@ -96,7 +96,7 @@ public class ColliderManager : MonoBehaviour
         return false;
     }
 
-    private bool AABBExit(AABBCollision collision1, AABBCollision collision2)
+    private bool AABBExit(AABBCollision collision1, AABBCollision collision2) //未完成
     {
         Rect aabb1 = collision1.Rect;
         Vector3 v1 = collision1.V;

@@ -17,7 +17,6 @@ public class PlayerState : MonoBehaviour
         set
         {
             _life = value;
-            Debug.Log($"HP{_life}");
             UpdateText();
         }
     }

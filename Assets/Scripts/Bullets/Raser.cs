@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Raser : MonoBehaviour
@@ -20,8 +17,7 @@ public class Raser : MonoBehaviour
 
     public void Hit(AABBCollision collision)
     {
-        Debug.Log("Raser hit " + collision.gameObject.name);
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.GetComponent<Enemy>().Hp -= damage;
         }
