@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy_Totugeki : MonoBehaviour
@@ -12,12 +9,14 @@ public class Enemy_Totugeki : MonoBehaviour
     private TmpRigidbody _rb;
     private bool _isPlayerInAttackRange = false;
     private bool _isHit = false;
+    private Camera cam;
 
     private void Awake()
     {
         _enemyManager = EnemyManager.Instance;
         GetComponent<AABBCollision>().OnAABBEnterEvent += PlayerHit;
         _rb = GetComponent<TmpRigidbody>();
+        cam = Camera.main;
     }
 
     private void Update()
@@ -31,7 +30,7 @@ public class Enemy_Totugeki : MonoBehaviour
             }
         }
 
-        Camera cam = Camera.main;
+        
         float x = this.transform.position.x;
         float y = this.transform.position.y;
 
@@ -63,8 +62,7 @@ public class Enemy_Totugeki : MonoBehaviour
     }
     void Move()
     {
-        _rb.XSpeed = transform.up.x * moveSpeed;
-        _rb.YSpeed = transform.up.y * moveSpeed;
+        _rb.AddSpeed(transform.up * moveSpeed);
     }
     bool IsPlayerInAttackRange()
     {

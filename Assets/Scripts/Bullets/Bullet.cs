@@ -18,8 +18,7 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 direction = _speed * _fixedSpeed * transform.up;
-        _rigidbody.XSpeed = direction.x;
-        _rigidbody.YSpeed = direction.y;
+        _rigidbody.AddSpeed(direction);
     }
 
     public void Hit(AABBCollision other)

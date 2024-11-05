@@ -10,8 +10,6 @@ public class AABBCollision : MonoBehaviour
     private Rect _rect;
     public Vector3 Pivot { get => this.transform.position; }
     public Rect Rect { get => _rect; }
-    public float Vx { get => _tmpRigidbody.XSpeed; }
-    public float Vy { get => _tmpRigidbody.YSpeed; }
     public Vector3 V { get => _tmpRigidbody.V; }
 
     public float Right { get => Pivot.x + size_cx + offset.x; }

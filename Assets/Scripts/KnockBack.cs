@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KnockBack : MonoBehaviour
@@ -22,7 +20,7 @@ public class KnockBack : MonoBehaviour
         float angle = 0f;
         for (_timer = _knockBackTime; _timer > 0f; _timer--, angle += 2)
         {
-            rb.XSpeed = (float)(Math.Cos(angle) * _knockBackForce);
+            //rb.XSpeed = (float)(Math.Cos(angle) * _knockBackForce);
             yield return null;
         }
     }

@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -16,12 +12,12 @@ public class Player : MonoBehaviour
     KnockBack _knockBack;
     private float _inputTimer = 0.0f;
     private bool _isButtonDown = false;
-    TmpRigidbody _tmpRigidbody;
+    TmpRigidbody _rb;
     private int _jumpCounter = 0;
 
     private void Start()
     {
-        _tmpRigidbody = GetComponent<TmpRigidbody>();
+        _rb = GetComponent<TmpRigidbody>();
         _knockBack = GetComponent<KnockBack>();
         GetComponent<AABBCollision>().OnAABBEnterEvent += Hit;
     }
@@ -65,7 +61,7 @@ public class Player : MonoBehaviour
 
     void Hit(AABBCollision other)
     {
-        _knockBack.KnockbackStart(GetComponent<AABBCollision>(),other,_tmpRigidbody);
+        _knockBack.KnockbackStart(GetComponent<AABBCollision>(),other,_rb);
     }
 
     public void KnockBack()
@@ -86,23 +82,23 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        _tmpRigidbody.YSpeed = jumpPower;
+        _rb.AddForce(new Vector3(0,jumpPower,0));
     }
 
     void Move()
     {
         float h = Input.GetAxis("Horizontal");
-        _tmpRigidbody.XSpeed = h * speed;
+        _rb.AddSpeed(new Vector3(h * speed,0,0));
     }
 
     void IsGround()
     {
-        if (this.transform.position.y < minPosY)
+        if (transform.position.y + _rb.V.y < minPosY)
         {
-            Vector3 tmp = this.transform.position;
+            Vector3 tmp = transform.position;
             tmp.y = minPosY;
             this.transform.position = tmp;
-            _tmpRigidbody.YSpeed = 0;
+            _rb.OnGround();
             _jumpCounter = maxJumpCount;
         }
     }
