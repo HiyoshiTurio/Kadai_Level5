@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackSpeed = 1f;
     [SerializeField] private float attackRange = 1f;
     private GameObject _enemy;
-    private int _hp = 3;
     private EnemyManager _enemyManager;
+    private int _hp = 3;
     private float _fixTimer = 0;
 
     public int Hp

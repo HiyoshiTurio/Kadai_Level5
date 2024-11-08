@@ -187,7 +187,7 @@ MonoBehaviour:
   bullet: {fileID: 1608445150478130577, guid: 7c24958dff5f752428b158391786083b, type: 3}
   mazzle: {fileID: 2903420996465970281}
   attackSpeed: 1
-  attackRange: 1
+  attackRange: 6
 --- !u!114 &5780203304348827899
 MonoBehaviour:
   m_ObjectHideFlags: 0

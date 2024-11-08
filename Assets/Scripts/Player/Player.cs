@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -9,16 +10,16 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpPower = 0.6f;
     [SerializeField] private float minPosY = -3f;
     [SerializeField] private int maxJumpCount = 2;
-    KnockBack _knockBack;
+    TmpRigidbody _rb;
+    CharacterActions _actions;
     private float _inputTimer = 0.0f;
     private bool _isButtonDown = false;
-    TmpRigidbody _rb;
     private int _jumpCounter = 0;
 
     private void Start()
     {
         _rb = GetComponent<TmpRigidbody>();
-        _knockBack = GetComponent<KnockBack>();
+        _actions = GetComponent<CharacterActions>();
         GetComponent<AABBCollision>().OnAABBEnterEvent += Hit;
     }
 
@@ -61,7 +62,7 @@ public class Player : MonoBehaviour
 
     void Hit(AABBCollision other)
     {
-        _knockBack.KnockbackStart(GetComponent<AABBCollision>(),other,_rb);
+        _actions.KnockbackStart(GetComponent<AABBCollision>(),other,_rb);
     }
 
     public void KnockBack()

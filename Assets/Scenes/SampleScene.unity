@@ -1396,6 +1396,7 @@ MonoBehaviour:
   maxLife: 5
   atk: 1
   text: {fileID: 1658652146}
+  Muteki: 1
 --- !u!114 &2099193868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1452,9 +1453,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2099193861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9f415fadb824a54289e2ed3676e19c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c9fc12b4afa98c44982cd0ca1c6b2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _knockBackTime: 8
+  _knockBackForce: 1
 --- !u!1001 &5576643128542245935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1465,11 +1468,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6279505892601519313, guid: 17b40988cf28e1843b281f402967b662, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.2
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 6279505892601519313, guid: 17b40988cf28e1843b281f402967b662, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.47
+      value: -2.64
       objectReference: {fileID: 0}
     - target: {fileID: 6279505892601519313, guid: 17b40988cf28e1843b281f402967b662, type: 3}
       propertyPath: m_LocalPosition.z

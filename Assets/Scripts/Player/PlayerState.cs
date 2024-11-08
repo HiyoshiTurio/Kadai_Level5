@@ -6,6 +6,7 @@ public class PlayerState : MonoBehaviour
     [SerializeField] private int maxLife = 5;
     [SerializeField] private int atk = 1;
     [SerializeField] private Text text;
+    [SerializeField] bool Muteki = false;
     private int _life = 0;
     
     public int Life
@@ -13,8 +14,11 @@ public class PlayerState : MonoBehaviour
         get => _life;
         set
         {
-            _life = value;
-            UpdateText();
+            if (!Muteki)
+            {
+                _life = value;
+                UpdateText();
+            }
         }
     }
 
