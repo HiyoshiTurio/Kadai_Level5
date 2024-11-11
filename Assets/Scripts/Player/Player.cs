@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour
+public class Player : CharacterBase
 {
     [SerializeField] private GameObject raser;
     [SerializeField] private GameObject bullet;
@@ -10,17 +10,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpPower = 0.6f;
     [SerializeField] private float minPosY = -3f;
     [SerializeField] private int maxJumpCount = 2;
-    TmpRigidbody _rb;
-    CharacterActions _actions;
     private float _inputTimer = 0.0f;
     private bool _isButtonDown = false;
     private int _jumpCounter = 0;
 
-    private void Start()
+    void Start()
     {
-        _rb = GetComponent<TmpRigidbody>();
-        _actions = GetComponent<CharacterActions>();
-        GetComponent<AABBCollision>().OnAABBEnterEvent += Hit;
+        Debug.Log(Rb.gameObject.name);
     }
 
     private void Update()
@@ -60,15 +56,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Hit(AABBCollision other)
-    {
-        _actions.KnockbackStart(GetComponent<AABBCollision>(),other,_rb);
-    }
-
-    public void KnockBack()
-    {
-    }
-
     void ShotRaser()
     {
         GameObject tmpRaser = Instantiate(raser);
@@ -83,23 +70,23 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        _rb.AddForce(new Vector3(0,jumpPower,0));
+        Rb.AddForce(new Vector3(0,jumpPower,0));
     }
 
     void Move()
     {
         float h = Input.GetAxis("Horizontal");
-        _rb.AddSpeed(new Vector3(h * speed,0,0));
+        Rb.AddSpeed(new Vector3(h * speed,0,0));
     }
 
     void IsGround()
     {
-        if (transform.position.y + _rb.V.y < minPosY)
+        if (transform.position.y + Rb.V.y < minPosY)
         {
             Vector3 tmp = transform.position;
             tmp.y = minPosY;
             this.transform.position = tmp;
-            _rb.OnGround();
+            Rb.OnGround();
             _jumpCounter = maxJumpCount;
         }
     }

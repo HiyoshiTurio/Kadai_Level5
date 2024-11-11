@@ -5,14 +5,14 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _speed = 7f;
     [SerializeField] private float _lifeTime = 3f;
     [SerializeField] private int _damage = 1;
-    TmpRigidbody _rigidbody;
+    MyRigidbody _rigidbody;
     private float _fixedSpeed = 0.01f;
 
     private void Start()
     {
         Invoke("DestryBullet", _lifeTime);
         GetComponent<AABBCollision>().OnAABBEnterEvent += Hit;
-        _rigidbody = GetComponent<TmpRigidbody>();
+        _rigidbody = GetComponent<MyRigidbody>();
     }
 
     private void FixedUpdate()

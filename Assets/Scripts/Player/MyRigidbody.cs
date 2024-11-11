@@ -1,6 +1,6 @@
 using UnityEngine;
 [DefaultExecutionOrder(-99)]
-public class TmpRigidbody : MonoBehaviour
+public class MyRigidbody : MonoBehaviour
 {
     [SerializeField] private float _gravity = 0.05f;
     private Vector3 _v = Vector3.zero;

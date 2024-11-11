@@ -733,8 +733,8 @@ GameObject:
   - component: {fileID: 948183108}
   - component: {fileID: 948183107}
   - component: {fileID: 948183106}
-  - component: {fileID: 948183105}
   - component: {fileID: 948183109}
+  - component: {fileID: 948183105}
   m_Layer: 0
   m_Name: Enemy_Totugeki
   m_TagString: Untagged

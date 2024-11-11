@@ -1,22 +1,20 @@
 using UnityEngine;
 
-public class Enemy_Totugeki : MonoBehaviour
+public class Enemy_Totugeki : CharacterBase
 {
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private int atk = 1;
     [SerializeField] private float moveSpeed = 0.1f;
     private EnemyManager _enemyManager;
-    private TmpRigidbody _rb;
     private bool _isPlayerInAttackRange = false;
     private bool _isHit = false;
     private Camera cam;
 
-    private void Awake()
+    private void Start()
     {
         _enemyManager = EnemyManager.Instance;
-        GetComponent<AABBCollision>().OnAABBEnterEvent += PlayerHit;
-        _rb = GetComponent<TmpRigidbody>();
         cam = Camera.main;
+        Debug.Log(Rb.gameObject.name);
     }
 
     private void Update()
@@ -52,7 +50,7 @@ public class Enemy_Totugeki : MonoBehaviour
         }
     }
 
-    void PlayerHit(AABBCollision collision)
+    protected override void AABBCollisionEnter(AABBCollision collision)
     {
         if (collision.gameObject.CompareTag("Player") && !_isHit)
         {
@@ -62,7 +60,7 @@ public class Enemy_Totugeki : MonoBehaviour
     }
     void Move()
     {
-        _rb.AddSpeed(transform.up * moveSpeed);
+        Rb.AddSpeed(transform.up * moveSpeed);
     }
     bool IsPlayerInAttackRange()
     {
