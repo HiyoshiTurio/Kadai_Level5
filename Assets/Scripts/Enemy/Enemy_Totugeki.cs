@@ -6,15 +6,14 @@ public class Enemy_Totugeki : CharacterBase
     [SerializeField] private int atk = 1;
     [SerializeField] private float moveSpeed = 0.1f;
     private EnemyManager _enemyManager;
+    private Camera cam;
     private bool _isPlayerInAttackRange = false;
     private bool _isHit = false;
-    private Camera cam;
 
     private void Start()
     {
         _enemyManager = EnemyManager.Instance;
         cam = Camera.main;
-        Debug.Log(Rb.gameObject.name);
     }
 
     private void Update()

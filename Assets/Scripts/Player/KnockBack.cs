@@ -3,24 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnockBack : MonoBehaviour
+public class KnockBack : CharacterBase
 {
     [SerializeField] private float _knockBackTime = 8f;
     [SerializeField] private float _knockBackForce = 1f;
 
-    public void KnockbackStart(AABBCollision character, AABBCollision hitObject, MyRigidbody rb)
+    private void Start()
     {
-        StartCoroutine(KnockBackAction(character, hitObject, rb));
+        Collision.OnAABBEnterEvent += KnockbackStart;
+    }
+
+    public void KnockbackStart(AABBCollision hitObject)
+    {
+        StartCoroutine(KnockBackAction(Collision, hitObject, Rb));
     }
 
     IEnumerator KnockBackAction(AABBCollision character, AABBCollision hitObject, MyRigidbody rb)
     {
         Vector3 p1 = character.Pivot;
         Vector3 p2 = hitObject.Pivot;
-        float angle = 0f;
-        for (float timer = _knockBackTime; timer > 0f; timer--, angle += 2)
+
+        Vector3 dic = new Vector3(0.05f * _knockBackForce, 0, 0);
+        if (p1.x < p2.x) dic.x = -dic.x;
+        
+        for (float timer = _knockBackTime; timer > 0f; timer--)
         {
-            rb.AddSpeed(new Vector3(-0.05f * _knockBackForce,0,0));
+            rb.AddSpeed(dic);
             yield return null;
         }
     }

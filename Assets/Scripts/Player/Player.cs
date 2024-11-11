@@ -14,11 +14,6 @@ public class Player : CharacterBase
     private bool _isButtonDown = false;
     private int _jumpCounter = 0;
 
-    void Start()
-    {
-        Debug.Log(Rb.gameObject.name);
-    }
-
     private void Update()
     {
         Move();
