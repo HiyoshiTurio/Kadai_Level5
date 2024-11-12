@@ -24,7 +24,7 @@ public class MyRigidbody : MonoBehaviour
 
     public void AddSpeed(Vector3 vector3)
     {
-        _vSpeed += vector3;
+        _vSpeed = vector3;
     }
 
     public void AddForce(Vector3 vector3)

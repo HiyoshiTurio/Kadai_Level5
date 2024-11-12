@@ -1425,7 +1425,7 @@ MonoBehaviour:
   raser: {fileID: 3072625675493628092, guid: 983ca2cbdbdac2241aae7d49a9acac2e, type: 3}
   bullet: {fileID: 1608445150478130577, guid: 7c24958dff5f752428b158391786083b, type: 3}
   muzzle: {fileID: 1345120161}
-  speed: 0.1
+  speed: 1
   jumpPower: 0.6
   minPosY: -3
   maxJumpCount: 2
@@ -1457,7 +1457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _knockBackTime: 8
-  _knockBackForce: 1
+  _knockBackForce: 5
 --- !u!1001 &5576643128542245935
 PrefabInstance:
   m_ObjectHideFlags: 0

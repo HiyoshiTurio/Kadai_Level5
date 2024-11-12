@@ -1,21 +1,31 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class KnockBack : CharacterBase
+public class KnockBack : MonoBehaviour
 {
     [SerializeField] private float _knockBackTime = 8f;
     [SerializeField] private float _knockBackForce = 1f;
+    CharacterBase _character;
+    MyRigidbody Rb => _character.GetRb();
+    AABBCollision Collision => _character.GetCollision();
+
+    private bool IsStunned
+    {
+        get => _character.IsStunned;
+        set => _character.IsStunned = value;
+    }
 
     private void Start()
     {
+        _character = GetComponent<CharacterBase>();
         Collision.OnAABBEnterEvent += KnockbackStart;
     }
 
     public void KnockbackStart(AABBCollision hitObject)
     {
-        StartCoroutine(KnockBackAction(Collision, hitObject, Rb));
+        IsStunned = true;
+        if(hitObject.gameObject.CompareTag("Bullet"))
+            StartCoroutine(KnockBackAction(Collision, hitObject, Rb));
     }
 
     IEnumerator KnockBackAction(AABBCollision character, AABBCollision hitObject, MyRigidbody rb)
@@ -31,5 +41,6 @@ public class KnockBack : CharacterBase
             rb.AddSpeed(dic);
             yield return null;
         }
+        IsStunned = false;
     }
 }

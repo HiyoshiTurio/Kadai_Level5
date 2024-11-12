@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class Player : CharacterBase
 {
@@ -10,9 +9,15 @@ public class Player : CharacterBase
     [SerializeField] private float jumpPower = 0.6f;
     [SerializeField] private float minPosY = -3f;
     [SerializeField] private int maxJumpCount = 2;
-    private float _inputTimer = 0.0f;
+    private PlayerState _playerState;
     private bool _isButtonDown = false;
+    private float _inputTimer = 0.0f;
     private int _jumpCounter = 0;
+
+    void Start()
+    {
+        _playerState = GetComponent<PlayerState>();
+    }
 
     private void Update()
     {
@@ -70,8 +75,11 @@ public class Player : CharacterBase
 
     void Move()
     {
-        float h = Input.GetAxis("Horizontal");
-        Rb.AddSpeed(new Vector3(h * speed,0,0));
+        if (_isStunned == false)
+        {
+            float h = Input.GetAxis("Horizontal");
+            Rb.AddSpeed(new Vector3(h * speed,0,0));
+        }
     }
 
     void IsGround()
