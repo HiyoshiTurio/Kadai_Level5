@@ -12,6 +12,7 @@ public class Player : CharacterBase
     private PlayerState _playerState;
     private bool _isButtonDown = false;
     private float _inputTimer = 0.0f;
+    private float _raserTime = 6.0f; //レーザーを出すのに必要な、ボタンを長押しする時間
     private int _jumpCounter = 0;
 
     void Start()
@@ -31,7 +32,7 @@ public class Player : CharacterBase
 
         if (Input.GetButtonUp("Fire1"))
         {
-            if (_inputTimer >= 6.0f)
+            if (_inputTimer >= _raserTime)
             {
                 ShotRaser();
             }
