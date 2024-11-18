@@ -79,7 +79,7 @@ public class Player : CharacterBase
         if (_isStunned == false)
         {
             float h = Input.GetAxis("Horizontal");
-            Rb.AddSpeed(new Vector3(h * speed,0,0));
+            Rb.AddForce(new Vector3(h * speed,0,0));
         }
     }
 
