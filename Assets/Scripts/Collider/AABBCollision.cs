@@ -5,7 +5,7 @@ public class AABBCollision : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] private float size_cx;
     [SerializeField] private float size_cy;
-    AABBCollision _aaBCollision;
+    AABBCollision _aabbCollision;
     private MyRigidbody _myRigidbody;
     private Rect _rect;
     public Vector3 Pivot { get => this.transform.position; }
@@ -20,9 +20,9 @@ public class AABBCollision : MonoBehaviour
 
     private void Start()
     {
-        _aaBCollision = this;
+        _aabbCollision = this;
         _myRigidbody = GetComponent<MyRigidbody>();
-        ColliderManager.Instance.AddAABBCollision(_aaBCollision);
+        ColliderManager.Instance.AddAABBCollision(_aabbCollision);
     }
     private void Update() 
     {

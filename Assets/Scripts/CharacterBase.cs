@@ -4,10 +4,10 @@ public class CharacterBase : MonoBehaviour
 {
     private protected MyRigidbody Rb = null;
     private protected AABBCollision Collision = null;
-    private protected bool _isStunned = false;
+    public bool _isStunned = false;
+    public bool _isHitStop = false;
     public MyRigidbody GetRb() { return Rb; }
     public AABBCollision GetCollision() { return Collision; }
-    public bool IsStunned { get { return _isStunned; } set { _isStunned = value; } }
     
     private void Awake()
     {

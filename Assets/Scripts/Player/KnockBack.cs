@@ -1,35 +1,27 @@
 using System.Collections;
 using UnityEngine;
 
-public class KnockBack : MonoBehaviour
+public class KnockBack : ActionBase
 {
     [SerializeField] private float _knockBackTime = 8f;
     [SerializeField] private float _knockBackForce = 1f;
-    CharacterBase _character;
-    MyRigidbody Rb => _character.GetRb();
-    AABBCollision Collision => _character.GetCollision();
+    MyRigidbody Rb => _characterBase.GetRb();
 
     private bool IsStunned
     {
-        get => _character.IsStunned;
-        set => _character.IsStunned = value;
+        get => _characterBase._isStunned;
+        set => _characterBase._isStunned = value;
     }
 
-    private void Start()
+    protected override void AABBCollisionEnterAction(AABBCollision hitObject)
     {
-        _character = GetComponent<CharacterBase>();
-        Collision.OnAABBEnterEvent += KnockbackStart;
-    }
-
-    public void KnockbackStart(AABBCollision hitObject)
-    {
-        IsStunned = true;
         if(hitObject.gameObject.CompareTag("Bullet"))
-            StartCoroutine(KnockBackAction(Collision, hitObject, Rb));
+            StartCoroutine(KnockBackAction(_collision, hitObject, Rb));
     }
 
     IEnumerator KnockBackAction(AABBCollision character, AABBCollision hitObject, MyRigidbody rb)
     {
+        IsStunned = true;
         Vector3 p1 = character.Pivot;
         Vector3 p2 = hitObject.Pivot;
 
