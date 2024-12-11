@@ -43,7 +43,7 @@ public class Enemy_Totugeki : CharacterBase
 
     private void FixedUpdate()
     {
-        if (_isPlayerInAttackRange)
+        if (_isPlayerInAttackRange && !_isHitStop)
         {
             Move();
         }

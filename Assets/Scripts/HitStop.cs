@@ -13,11 +13,11 @@ public class HitStop : ActionBase
 
     IEnumerator HitStopAction()
     {
-        _characterBase._isHitStop = true;
+        CharacterBase._isHitStop = true;
         for (int i = 0; i < stopFrame; i++)
         {
             yield return null;
         }
-        _characterBase._isHitStop = false;
+        CharacterBase._isHitStop = false;
     }
 }

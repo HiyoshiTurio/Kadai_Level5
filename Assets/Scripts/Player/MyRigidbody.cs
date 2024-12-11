@@ -5,18 +5,6 @@ public class MyRigidbody : MonoBehaviour
     [SerializeField] private float _gravity = 0.05f;
     private Vector3 _v = Vector3.zero;
 
-    private Vector3 VForce
-    {
-        get { return _v; }
-        set { _v = value; }
-    }
-
-    private Vector3 VSpeed
-    {
-        get { return _v; }
-        set { _v = value; }
-    }
-
     public Vector3 V
     {
         get => _v;
@@ -35,18 +23,18 @@ public class MyRigidbody : MonoBehaviour
 
     public void AddSpeed(Vector3 vector3)
     {
-        VSpeed = vector3;
+        V = vector3;
     }
 
     public void AddForce(Vector3 vector3)
     {
-        VForce += vector3;
+        V += vector3;
     }
 
     public void OnGround()
     {
-        Vector3 v = VForce;
+        Vector3 v = V;
         v.y = 0;
-        VForce = v;
+        V = v;
     }
 }

@@ -5,18 +5,18 @@ public class KnockBack : ActionBase
 {
     [SerializeField] private float _knockBackTime = 8f;
     [SerializeField] private float _knockBackForce = 1f;
-    MyRigidbody Rb => _characterBase.GetRb();
+    MyRigidbody Rb => CharacterBase.GetRb();
 
     private bool IsStunned
     {
-        get => _characterBase._isStunned;
-        set => _characterBase._isStunned = value;
+        get => CharacterBase._isStunned;
+        set => CharacterBase._isStunned = value;
     }
 
     protected override void AABBCollisionEnterAction(AABBCollision hitObject)
     {
         if(hitObject.gameObject.CompareTag("Bullet"))
-            StartCoroutine(KnockBackAction(_collision, hitObject, Rb));
+            StartCoroutine(KnockBackAction(Collision, hitObject, Rb));
     }
 
     IEnumerator KnockBackAction(AABBCollision character, AABBCollision hitObject, MyRigidbody rb)

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : CharacterBase
 {
     [SerializeField] private float _speed = 7f;
     [SerializeField] private float _lifeTime = 3f;
@@ -11,14 +11,21 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         Invoke("DestryBullet", _lifeTime);
-        GetComponent<AABBCollision>().OnAABBEnterEvent += Hit;
         _rigidbody = GetComponent<MyRigidbody>();
     }
 
     private void FixedUpdate()
     {
-        Vector2 direction = _speed * _fixedSpeed * transform.up;
-        _rigidbody.AddSpeed(direction);
+        if (!_isHitStop)
+        {
+            Vector2 direction = _speed * _fixedSpeed * transform.up;
+            _rigidbody.AddSpeed(direction);
+        }
+    }
+
+    protected override void AABBCollisionEnter(AABBCollision collision)
+    {
+        Hit(collision);
     }
 
     public void Hit(AABBCollision other)

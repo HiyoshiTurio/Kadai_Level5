@@ -6,6 +6,7 @@ public class Player : CharacterBase
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject muzzle;
     [SerializeField] private float speed = 5f;
+    [SerializeField] private float limitSpeed = 5f;
     [SerializeField] private float jumpPower = 0.6f;
     [SerializeField] private float minPosY = -3f;
     [SerializeField] private int maxJumpCount = 2;
@@ -22,6 +23,7 @@ public class Player : CharacterBase
 
     private void Update()
     {
+        LimitSpeed();
         Move();
         IsGround();
         if (Input.GetButtonDown("Fire1"))
@@ -47,6 +49,7 @@ public class Player : CharacterBase
             Jump();
             _jumpCounter--;
         }
+        
     }
 
     private void FixedUpdate()
@@ -79,7 +82,7 @@ public class Player : CharacterBase
         if (_isStunned == false)
         {
             float h = Input.GetAxis("Horizontal");
-            Rb.AddForce(new Vector3(h * speed,0,0));
+            Rb.AddForce(new Vector3(h * speed * 0.01f,0,0));
         }
     }
 
@@ -92,6 +95,17 @@ public class Player : CharacterBase
             this.transform.position = tmp;
             Rb.OnGround();
             _jumpCounter = maxJumpCount;
+        }
+    }
+
+    void LimitSpeed()
+    {
+        if (Rb.V.x * Rb.V.x > limitSpeed * limitSpeed)
+        {
+            Debug.Log("Speed limit");
+            Vector3 tmp = Rb.V;
+            tmp.x /= 1.05f;
+            Rb.AddSpeed(tmp);
         }
     }
 }
