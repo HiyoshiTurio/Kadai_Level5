@@ -1,22 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerState : MonoBehaviour
+public class PlayerState : MonoBehaviour, IAddDamage
 {
     [SerializeField] private int maxLife = 5;
     [SerializeField] private int atk = 1;
     [SerializeField] private Text text;
     [SerializeField] bool Muteki = false;
-    private int _life = 0;
+    private int _hp = 0;
     
-    public int Life
+    public int Hp
     {
-        get => _life;
+        get => _hp;
         set
         {
             if (!Muteki)
             {
-                _life = value;
+                _hp = value;
                 UpdateText();
             }
         }
@@ -33,12 +33,18 @@ public class PlayerState : MonoBehaviour
 
     void Start()
     {
+        Hp = maxLife;
         UpdateText();
-        Life = maxLife;
     }
 
     void UpdateText()
     {
-        text.text = Life.ToString();
+        text.text = Hp.ToString();
+    }
+
+    public void AddDamage(int damage)
+    {
+        Hp -= damage;
+        Debug.Log("HitPlayer");
     }
 }

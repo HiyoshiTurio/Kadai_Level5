@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : CharacterBase
+public class Enemy : CharacterBase, IAddDamage
 {
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject mazzle;
@@ -51,6 +51,7 @@ public class Enemy : CharacterBase
     {
         GameObject _tmpBullet = Instantiate(bullet, mazzle.transform.position, Quaternion.identity);
         _tmpBullet.transform.up = mazzle.transform.up;
+        _tmpBullet.GetComponent<Bullet>().shooterTagName = this.gameObject.tag;
     }
 
     bool IsPlayerInAttackRange()
@@ -67,5 +68,10 @@ public class Enemy : CharacterBase
             _fixTimer = 0;
             return false;
         }
+    }
+
+    public void AddDamage(int damage)
+    {
+        _hp -= damage;
     }
 }

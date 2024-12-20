@@ -7,7 +7,7 @@ public class HealPack : ItemBase
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerState>().Life += healAmount;
+            collision.gameObject.GetComponent<PlayerState>().Hp += healAmount;
         }
     }
 }

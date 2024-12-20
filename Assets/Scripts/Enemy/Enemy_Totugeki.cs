@@ -53,7 +53,7 @@ public class Enemy_Totugeki : CharacterBase
     {
         if (collision.gameObject.CompareTag("Player") && !_isHit)
         {
-            collision.gameObject.GetComponent<PlayerState>().Life -= atk;
+            collision.gameObject.GetComponent<PlayerState>().Hp -= atk;
             _isHit = true;
         }
     }

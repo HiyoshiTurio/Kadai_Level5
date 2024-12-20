@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Bullet : CharacterBase
 {
@@ -6,6 +7,7 @@ public class Bullet : CharacterBase
     [SerializeField] private float _lifeTime = 3f;
     [SerializeField] private int _damage = 1;
     MyRigidbody _rigidbody;
+    public string shooterTagName = "";
     private float _fixedSpeed = 0.01f;
 
     private void Start()
@@ -30,13 +32,9 @@ public class Bullet : CharacterBase
 
     public void Hit(AABBCollision other)
     {
-        if (other.gameObject.tag == "Player")
+        if (!other.gameObject.CompareTag(shooterTagName))
         {
-            HitPlayer(other);
-        }
-        else if (other.gameObject.tag == "Enemy")
-        {
-            HitEnemy(other);
+            HitOther(other);
         }
         DestryBullet();
     }
@@ -45,13 +43,10 @@ public class Bullet : CharacterBase
     {
         Destroy(gameObject);
     }
-    public void HitPlayer(AABBCollision collision)
+    public void HitOther(AABBCollision collision)
     {
-        collision.gameObject.GetComponent<PlayerState>().Life -= _damage;
-    }
-
-    private void HitEnemy(AABBCollision collision)
-    {
-        collision.gameObject.GetComponent<Enemy>().Hp -= _damage;
+        IAddDamage tmp = collision.gameObject.GetComponent<IAddDamage>();
+        if(tmp != null)
+            tmp.AddDamage(_damage);
     }
 }

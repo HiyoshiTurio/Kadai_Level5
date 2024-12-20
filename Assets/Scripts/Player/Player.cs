@@ -70,13 +70,13 @@ public class Player : CharacterBase
     {
         GameObject tmpBullet = Instantiate(bullet, muzzle.transform.position, Quaternion.identity);
         tmpBullet.transform.up = muzzle.transform.up;
+        tmpBullet.GetComponent<Bullet>().shooterTagName = this.gameObject.tag;
     }
 
     void Jump()
     {
         Rb.AddForce(new Vector3(0,jumpPower,0));
     }
-
     void Move()
     {
         if (_isStunned == false)
@@ -85,7 +85,6 @@ public class Player : CharacterBase
             Rb.AddForce(new Vector3(h * speed * 0.01f,0,0));
         }
     }
-
     void IsGround()
     {
         if (transform.position.y + Rb.V.y < minPosY)
@@ -102,7 +101,6 @@ public class Player : CharacterBase
     {
         if (Rb.V.x * Rb.V.x > limitSpeed * limitSpeed)
         {
-            Debug.Log("Speed limit");
             Vector3 tmp = Rb.V;
             tmp.x /= 1.05f;
             Rb.AddSpeed(tmp);
