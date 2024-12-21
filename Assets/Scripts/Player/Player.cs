@@ -23,7 +23,6 @@ public class Player : CharacterBase
 
     private void Update()
     {
-        LimitSpeed();
         Move();
         IsGround();
         if (Input.GetButtonDown("Fire1"))
@@ -75,6 +74,8 @@ public class Player : CharacterBase
 
     void Jump()
     {
+        Vector3 vec = new Vector3(Rb.V.x,0,0);
+        Rb.AddSpeed(vec);
         Rb.AddForce(new Vector3(0,jumpPower,0));
     }
     void Move()
@@ -82,7 +83,8 @@ public class Player : CharacterBase
         if (_isStunned == false)
         {
             float h = Input.GetAxis("Horizontal");
-            Rb.AddForce(new Vector3(h * speed * 0.01f,0,0));
+            Vector3 vec = new Vector3(h * speed * 0.1f, Rb.V.y, 0);
+            Rb.AddSpeed(vec);
         }
     }
     void IsGround()
@@ -91,19 +93,9 @@ public class Player : CharacterBase
         {
             Vector3 tmp = transform.position;
             tmp.y = minPosY;
-            this.transform.position = tmp;
+            transform.position = tmp;
             Rb.OnGround();
             _jumpCounter = maxJumpCount;
-        }
-    }
-
-    void LimitSpeed()
-    {
-        if (Rb.V.x * Rb.V.x > limitSpeed * limitSpeed)
-        {
-            Vector3 tmp = Rb.V;
-            tmp.x /= 1.05f;
-            Rb.AddSpeed(tmp);
         }
     }
 }

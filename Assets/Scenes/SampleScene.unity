@@ -1462,7 +1462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _knockBackTime: 30
-  _knockBackForce: 3
+  _knockBackForce: 2
 --- !u!1001 &5576643128542245935
 PrefabInstance:
   m_ObjectHideFlags: 0
