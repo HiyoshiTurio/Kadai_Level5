@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Bullet : CharacterBase
 {
@@ -32,11 +31,11 @@ public class Bullet : CharacterBase
 
     public void Hit(AABBCollision other)
     {
-        if (!other.gameObject.CompareTag(shooterTagName))
+        if (!other.gameObject.CompareTag(shooterTagName) && !other.gameObject.CompareTag("Bullet"))
         {
             HitOther(other);
+            DestryBullet();
         }
-        DestryBullet();
     }
 
     void DestryBullet()
@@ -46,7 +45,9 @@ public class Bullet : CharacterBase
     public void HitOther(AABBCollision collision)
     {
         IAddDamage tmp = collision.gameObject.GetComponent<IAddDamage>();
-        if(tmp != null)
+        if (tmp != null)
+        {
             tmp.AddDamage(_damage);
+        }
     }
 }

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 6874887979906609595}
   - component: {fileID: 5780203304348827899}
   - component: {fileID: 6206569865912073086}
+  - component: {fileID: -5037711248878576415}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -184,6 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed1ea460cf740564fa79364911eddaec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isStunned: 0
+  _isHitStop: 0
   bullet: {fileID: 1608445150478130577, guid: 7c24958dff5f752428b158391786083b, type: 3}
   mazzle: {fileID: 2903420996465970281}
   attackSpeed: 1
@@ -216,3 +219,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gravity: 0
+--- !u!114 &-5037711248878576415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4527182864294117782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c9fc12b4afa98c44982cd0ca1c6b2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _knockBackTime: 30
+  _knockBackForce: 2

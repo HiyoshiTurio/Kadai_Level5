@@ -33,6 +33,7 @@ public class KnockBack : ActionBase
             rb.AddSpeed(dic);
             yield return null;
         }
+        rb.AddSpeed(Vector3.zero);
         IsStunned = false;
     }
 }
