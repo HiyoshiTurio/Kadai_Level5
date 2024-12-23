@@ -45,6 +45,5 @@ public class PlayerState : MonoBehaviour, IAddDamage
     public void AddDamage(int damage)
     {
         Hp -= damage;
-        Debug.Log("HitPlayer");
     }
 }

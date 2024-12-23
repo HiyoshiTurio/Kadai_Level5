@@ -33,7 +33,6 @@ public class AABBCollision : MonoBehaviour
             Bottom
         );
     }
-
     private void OnDestroy()
     {
         ColliderManager.Instance.RemoveAABBCollision(this);

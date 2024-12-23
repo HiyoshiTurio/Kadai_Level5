@@ -5,6 +5,7 @@ public class KnockBack : ActionBase
 {
     [SerializeField] private float _knockBackTime = 8f;
     [SerializeField] private float _knockBackForce = 1f;
+    [SerializeField] bool _isSuperArmor = false;
     MyRigidbody Rb => CharacterBase.GetRb();
 
     private bool IsStunned
@@ -15,6 +16,8 @@ public class KnockBack : ActionBase
 
     protected override void AABBCollisionEnterAction(AABBCollision hitObject)
     {
+        if (IsStunned && _isSuperArmor)
+            return;
         if(hitObject.gameObject.CompareTag("Bullet"))
             StartCoroutine(KnockBackAction(Collision, hitObject, Rb));
     }
