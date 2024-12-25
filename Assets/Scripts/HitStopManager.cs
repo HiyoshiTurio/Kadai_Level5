@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[DefaultExecutionOrder(-100)]
 public class HitStopManager : MonoBehaviour
 { 
     [SerializeField] float hitStopDuration = 0.1f;
@@ -27,7 +27,6 @@ public class HitStopManager : MonoBehaviour
 
     public void HitStop()
     {
-        Debug.Log("Invoke HitStop");
         StartCoroutine(HitStopAction());
     }
     IEnumerator HitStopAction()

@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class CharacterBase : MonoBehaviour
 {
     private protected MyRigidbody Rb = null;

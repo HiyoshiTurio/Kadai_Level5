@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-
 public class KnockBack : ActionBase
 {
     [SerializeField] private float _knockBackTime = 8f;

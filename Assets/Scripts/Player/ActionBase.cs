@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[DefaultExecutionOrder(1)]
 public class ActionBase : MonoBehaviour
 {
     protected CharacterBase CharacterBase;
@@ -10,6 +10,5 @@ public class ActionBase : MonoBehaviour
         Collision = CharacterBase.GetCollision();
         Collision.OnAABBEnterEvent += AABBCollisionEnterAction;
     }
-
-    protected virtual void AABBCollisionEnterAction(AABBCollision aabbCollision){}
+    protected virtual void AABBCollisionEnterAction(AABBCollision aabbCollision) { }
 }

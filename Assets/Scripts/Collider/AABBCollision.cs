@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+[DefaultExecutionOrder(0)]
 public class AABBCollision : MonoBehaviour
 {
     [SerializeField] private Vector3 offset;
@@ -37,11 +38,16 @@ public class AABBCollision : MonoBehaviour
     {
         ColliderManager.Instance.RemoveAABBCollision(this);
     }
-
     public void Hit(AABBCollision collision)
     {
         OnAABBEnterEvent?.Invoke(collision);
     }
+
+    public void DebugText()
+    {
+        Debug.Log($"{gameObject.name}");
+    }
+
     private void OnDrawGizmos()
     {
         _rect = new Rect(
