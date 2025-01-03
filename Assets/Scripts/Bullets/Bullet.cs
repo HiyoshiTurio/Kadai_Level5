@@ -5,22 +5,22 @@ public class Bullet : CharacterBase
     [SerializeField] private float _speed = 7f;
     [SerializeField] private float _lifeTime = 3f;
     [SerializeField] private int _damage = 1;
-    MyRigidbody _rigidbody;
+    MyRigidbody _rb;
     public string shooterTagName = "";
     private float _fixedSpeed = 0.01f;
 
     private void Start()
     {
         Invoke("DestryBullet", _lifeTime);
-        _rigidbody = GetComponent<MyRigidbody>();
+        _rb = GetComponent<MyRigidbody>();
     }
 
     private void FixedUpdate()
     {
-        if (!_isHitStop)
+        if (!IsHitStop)
         {
             Vector2 direction = _speed * _fixedSpeed * transform.up;
-            _rigidbody.AddSpeed(direction);
+            _rb.AddSpeed(direction);
         }
     }
 

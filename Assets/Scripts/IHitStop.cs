@@ -7,7 +7,6 @@ public interface IHitStop
     public static void HitStop()
     {
         HitStopManager.Instance.HitStop();
-        Debug.Log("Interface IHitStop Invoked");
     }
     public static void RegisterHitStopObject(IHitStop hitStopObject)
     {

@@ -1,10 +1,22 @@
 using UnityEngine;
+using UnityEngine.Serialization;
+
 public class CharacterBase : MonoBehaviour
 {
     private protected MyRigidbody Rb = null;
     private protected AABBCollision Collision = null;
     public bool _isStunned = false;
-    public bool _isHitStop = false;
+    private bool _isHitStop = false;
+
+    public bool IsHitStop
+    {
+        get { return _isHitStop; }
+        set
+        {
+            _isHitStop = value;
+            Debug.Log("IsHitStop: " + _isHitStop);
+        }
+    }
     public MyRigidbody GetRb() { return Rb; }
     public AABBCollision GetCollision() { return Collision; }
     
